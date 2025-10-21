@@ -123,20 +123,52 @@ endmodule
 `default_nettype wire
 ```
 
-6- DE-10 Board picture
+## 6- Rough explenation 
+
+what talks to what
+
+FSM_ChessTimer = brain.
+Reads clk, reset, and two buttons.
+Sends control lines to the timers:
+load_counters (initialize) and en_counters (run one timer).
+Also sets state_displays (who’s active / idle / end).
+
+Datapath = timers + display.
+Two down-counters run or load based on the FSM signals.
+When a timer hits 0 it raises counter_1 or counter_2 back to the FSM.
+
+FSM (how it behaves)
+
+IDLE: load both timers, no one runs.
+Button 0 → PLAYER1, Button 1 → PLAYER2.
+
+PLAYER1: only P1 timer enabled.
+Button 1 → PLAYER2; if counter_1==0 → END.
+
+PLAYER2: only P2 timer enabled.
+Button 0 → PLAYER1; if counter_2==0 → END.
+
+END: both timers off.
+Reset → IDLE.
+
+Always: exactly one timer runs in PLAYER states; none run in IDLE/END.
+
+
+
+## 7- DE-10 Board picture
 
 https://github.com/user-attachments/assets/5d1264fb-34c7-4c63-95d7-26a54479e63b
 
 
-## 7- My observations
+## 8- My observations
 - The controller exercised all states and took the intended paths in testing.
 - Counter enables were mutually exclusive at all times, so no simultaneous counting occurred.
 - Moore-style outputs stayed steady between clocked state changes, avoiding glitches.
 
-## 8- Conclusion
+## 9- Conclusion
 `FSM_ChessTimer` reliably coordinates a two-player countdown: it hands off on button presses and halts when a timer reaches zero. The simulated behavior aligned with the design goals.
 
-## 9- Cool ideas for next time
+## 10- Cool ideas for next time
 - Add debounce and one-shot generation for the buttons.
 - Show active player and end state on LEDs/7-segment displays.
 - Include a pause/resume control.
