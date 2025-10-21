@@ -1,4 +1,10 @@
-# Lab 6 FSM_ChessTimer — Two-Player Timer 
+# Lab 6 FSM ChessTimer Two-Player Timer 
+
+### Name: Ali Behbehani 
+### Subject: Digital Design
+### Professor: Goncalo Ferreria
+##
+
 ## 1- Objective
 
 Make a small Verilog FSM that runs a two-player chess clock: only one timer runs, a button switches turns, hitting zero ends the game.
@@ -122,7 +128,7 @@ endmodule
 https://github.com/user-attachments/assets/5d1264fb-34c7-4c63-95d7-26a54479e63b
 
 
-## 7- Discussion
+## 7- My observations
 - The controller exercised all states and took the intended paths in testing.
 - Counter enables were mutually exclusive at all times, so no simultaneous counting occurred.
 - Moore-style outputs stayed steady between clocked state changes, avoiding glitches.
