@@ -160,16 +160,15 @@ https://github.com/user-attachments/assets/5d1264fb-34c7-4c63-95d7-26a54479e63b
 
 
 ## 8- My observations
-- The controller exercised all states and took the intended paths in testing.
-- Counter enables were mutually exclusive at all times, so no simultaneous counting occurred.
-- Moore-style outputs stayed steady between clocked state changes, avoiding glitches.
+- During testing, the controller traversed the designated paths and exercised every state.
+- No counting took place at the same time because counter-enables were always mutually exclusive.
+- Glitches were avoided via Moore-style outputs, which remained constant between timed state changes.
 
 ## 9- Conclusion
 `FSM_ChessTimer` reliably coordinates a two-player countdown: it hands off on button presses and halts when a timer reaches zero. The simulated behavior aligned with the design goals.
 
 ## 10- Cool ideas for next time
 - Add debounce and one-shot generation for the buttons.
-- Show active player and end state on LEDs/7-segment displays.
 - Include a pause/resume control.
 - Trigger a tone or buzzer when time expires.
 
