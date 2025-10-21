@@ -125,7 +125,6 @@ endmodule
 
 ## 6- Rough explenation 
 
-what talks to what
 
 FSM_ChessTimer = brain.
 Reads clk, reset, and two buttons.
